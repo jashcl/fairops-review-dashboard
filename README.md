@@ -1,226 +1,323 @@
-\# FairOps — Review Workflow Dashboard
+<div align="center">
 
+<h1>FairOps — Review Workflow Dashboard</h1>
 
+<p>
+A frontend-focused review workflow dashboard built with React and Material UI.
+</p>
 
-FairOps is a frontend-focused review workflow dashboard built with React and Material UI. It simulates an internal operations product where reviewers can inspect cases, track risk signals, manage review teams, and move decisions through a structured workflow.
+<p>
+<a href="https://fairops.netlify.app">Live Demo</a> ·
+<a href="https://github.com/jashcl/fairops-review-dashboard">GitHub Repository</a>
+</p>
 
+</div>
 
+---
 
-The project focuses on clean frontend architecture, polished UI, reusable components, API/service separation, routing, state handling, and production-style dashboard screens.
+<h2>Project Summary</h2>
 
+FairOps is a frontend-focused review workflow dashboard that simulates an internal operations tool for reviewing cases, tracking risk signals, managing review teams, and moving decisions through a structured workflow.
 
+The project is intentionally focused on frontend engineering. Instead of adding a rushed backend, the goal was to build a stable, hosted, and explainable product UI with routing, protected pages, dashboard views, search/filter/sort flows, local service abstraction, local persistence, and a polished interface.
 
-\## Live Demo
+The current version uses local mock data and browser storage so the app can be reviewed and deployed without needing a live backend, database, or authentication server.
 
+---
 
+<h2>Live Demo</h2>
 
-Coming soon.
+<p>
+Live site: <a href="https://fairops.netlify.app">https://fairops.netlify.app</a>
+</p>
 
-
-
-\## Project Overview
-
-
-
-FairOps was built as a frontend engineering case study for a product-style dashboard. The app is designed around review operations instead of a basic CRUD interface.
-
-
-
-Core product areas include:
-
-
-
-\- Dark premium landing page
-
-\- Demo login flow
-
-\- Review dashboard
-
-\- Review case queue
-
-\- Review teams
-
-\- Reviewer profile
-
-\- Local mock data/service layer
-
-\- Responsive Material UI components
-
-
-
-\## Features
-
-
-
-\### Review Dashboard
-
-
-
-\- Overview of open cases
-
-\- Risk-focused metrics
-
-\- High-risk watchlist
-
-\- Pipeline summary
-
-\- Recent review activity
-
-\- Premium dark UI layout
-
-
-
-\### Review Case Queue
-
-
-
-\- Search by case ID, applicant name, or email
-
-\- Filter by review team
-
-\- Filter by risk level
-
-\- Sort by risk score, team, or applicant name
-
-\- Status chips for review state
-
-\- Risk score progress bars
-
-\- CSV export
-
-\- Archive action
-
-
-
-\### Review Teams
-
-
-
-\- Manage review teams/categories
-
-\- Search and filter teams
-
-\- Add or edit review teams
-
-\- Local state persistence using browser storage
-
-
-
-\### Authentication
-
-
-
-\- Demo login flow
-
-\- Protected routes
-
-\- Local session token
-
-\- Redirect handling for protected pages
-
-
-
-\## Tech Stack
-
-
-
-\- React
-
-\- React Router
-
-\- Material UI
-
-\- JavaScript
-
-\- Local Storage
-
-\- Create React App
-
-\- CSS-in-JS styling through MUI `sx`
-
-\- Netlify-ready static deployment
-
-
-
-\## Architecture
-
-
-
-The project keeps UI, data access, routing, and styling concerns separated.
-
-
+Demo login:
 
 ```txt
+Username: demo-reviewer
+Password: demo123
+```
 
-frontend/
+Any non-empty username and password will also start a demo session.
 
-&#x20; public/
+---
 
-&#x20;   index.html
+<h2>What the App Does</h2>
 
-&#x20;   manifest.json
+FairOps allows a reviewer to:
 
-&#x20;   favicon.svg
+- log in through a demo login flow
+- access protected dashboard pages
+- view review case metrics
+- inspect high-risk cases
+- search and filter review cases
+- sort cases by risk score, team, or applicant name
+- manage review teams
+- export review case data
+- use the app as a lightweight internal workflow dashboard
 
-&#x20;   \_redirects
+---
 
+<h2>Main Features</h2>
 
+<h3>Review Dashboard</h3>
 
-&#x20; src/
+- shows total active review cases
+- shows pending and in-review case count
+- highlights high-risk cases
+- calculates average risk score
+- shows a review pipeline breakdown
+- provides quick access to the review queue
 
-&#x20;   components/
+<h3>Review Case Queue</h3>
 
-&#x20;     cases/
+- search by case ID, applicant name, or email
+- filter cases by review team
+- filter cases by risk level
+- sort cases by risk score, review team, or applicant name
+- show workflow status using status chips
+- show risk score with progress indicators
+- export review cases as CSV
+- archive cases from the queue
 
-&#x20;     dashboard/
+<h3>Review Teams</h3>
 
-&#x20;     layout/
+- manage review teams and review categories
+- add and edit review teams
+- search team data
+- persist team data locally in the browser
 
-&#x20;     ui/
+<h3>Authentication Flow</h3>
 
-&#x20;     Dashboard.js
+- demo login
+- local session token
+- protected routes
+- redirect handling for internal dashboard pages
 
-&#x20;     EmployeeList.js
+<h3>User Interface</h3>
 
-&#x20;     DepartmentList.js
+- dashboard-style dark interface
+- responsive layout
+- Material UI components
+- gradient buttons and cards
+- clean navigation
+- status-based indicators
+- custom FairOps branding and favicon
 
-&#x20;     Login.js
+---
 
-&#x20;     LandingPage.js
+<h2>Tech Stack</h2>
 
-&#x20;     Navbar.js
+- React
+- React Router
+- Material UI
+- JavaScript
+- Local Storage
+- Create React App
+- Netlify
 
-&#x20;     Footer.js
+---
 
+<h2>Project Structure</h2>
 
+The project is kept frontend-first. The deployed app lives inside the `frontend` folder.
 
-&#x20;   data/
+```txt
+fairops-review-dashboard/
+  README.md
+  netlify.toml
+  frontend/
+    package.json
+    package-lock.json
+    public/
+      index.html
+      manifest.json
+      favicon.svg
+      _redirects
 
-&#x20;     mockData.js
+    src/
+      components/
+        cases/
+          ReviewCaseDetails.js
+          ReviewCaseList.js
 
+        dashboard/
+          Dashboard.js
 
+        layout/
+          Navbar.js
+          Footer.js
 
-&#x20;   services/
+        ui/
+          EmptyState.js
+          ErrorState.js
+          LoadingState.js
 
-&#x20;     employeeService.js
+        Dashboard.js
+        EmployeeList.js
+        DepartmentList.js
+        EmployeeForm.js
+        DepartmentForm.js
+        LandingPage.js
+        Login.js
+        Register.js
+        Profile.js
+        ProtectedRoute.js
+        QuickActions.js
+        NotFoundPage.js
 
-&#x20;     departmentService.js
+      data/
+        mockData.js
 
+      services/
+        employeeService.js
+        departmentService.js
+        graphql/
+          reviewCaseOperations.js
 
+      types/
+        reviewCase.types.js
 
-&#x20;   App.js
+      utils/
+        reviewCaseUtils.js
 
-&#x20;   index.js
+      App.js
+      index.js
+      theme.js
+      App.css
+      index.css
+```
 
-&#x20;   theme.js
+Some internal filenames still come from the original base structure, such as `EmployeeList.js` and `DepartmentList.js`. The product direction, UI, data, and workflow have been rebuilt around the FairOps review workflow concept. A future cleanup would rename the remaining legacy filenames fully to match the FairOps domain.
 
-## Future Improvements
+---
 
-- Rename remaining legacy internal filenames to fully match the FairOps domain
-- Add TypeScript models for review cases, teams, and workflow status
-- Add unit tests for filtering, sorting, and risk calculation logic
-- Replace local mock services with a REST or GraphQL backend
-- Add reviewer/admin role-based workflows
-- Add audit timeline for status changes and reviewer notes
-- Add optimistic UI updates once a real API is connected
+<h2>Architecture and Engineering Decisions</h2>
 
+<h3>Frontend-first scope</h3>
+
+FairOps is built as a frontend-focused product demo. The project focuses on frontend responsibilities that matter in a dashboard-style role: routing, protected views, local state handling, reusable UI patterns, dashboard layout, search/filter/sort behavior, and deployment.
+
+I avoided adding a rushed backend because the goal was to keep the project stable, hosted, and easy to review.
+
+<h3>Service layer separation</h3>
+
+Data access is handled through service files instead of being scattered directly across UI components. This keeps the UI components focused on rendering, user interaction, and state updates.
+
+The current implementation uses local browser storage, but the same service layer can later be replaced with REST or GraphQL calls.
+
+<h3>Local persistence</h3>
+
+The app stores demo cases, review teams, and login state in local storage. This makes the deployed version usable without an external server or database.
+
+<h3>Protected routes</h3>
+
+Internal pages are wrapped with a protected route component. If a user is not logged in, they are redirected to the login page before accessing dashboard screens.
+
+<h3>Derived UI state</h3>
+
+Search results, filters, risk labels, and dashboard values are calculated from the case data. This avoids manually duplicating state and makes the UI behavior easier to reason about.
+
+<h3>Visual design</h3>
+
+The interface uses a dark theme, spacing, cards, chips, progress bars, and risk indicators to make the workflow easier to scan. The design goal was to make the project feel closer to a modern internal SaaS tool rather than a basic CRUD interface.
+
+<h3>GraphQL-ready direction</h3>
+
+The project includes GraphQL operation files as a future API direction. The current deployed version uses local services, but the separated service layer makes it easier to replace mock data with real queries and mutations later.
+
+---
+
+<h2>How to Run Locally</h2>
+
+Clone the repository:
+
+```bash
+git clone https://github.com/jashcl/fairops-review-dashboard.git
+cd fairops-review-dashboard/frontend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm start
+```
+
+The app will run at:
+
+```txt
+http://localhost:3000
+```
+
+---
+
+<h2>Production Build</h2>
+
+From the `frontend` folder:
+
+```bash
+npm run build
+```
+
+---
+
+<h2>Deployment</h2>
+
+The project is deployed on Netlify.
+
+Netlify settings used:
+
+```txt
+Base directory: frontend
+Build command: npm run build
+Publish directory: build
+```
+
+React Router support is handled through the `_redirects` file:
+
+```txt
+/* /index.html 200
+```
+
+This makes routes like `/dashboard`, `/employees`, `/departments`, and `/profile` work correctly even after refreshing the page.
+
+---
+
+<h2>What I Focused On</h2>
+
+- making the project stable and deployable
+- cleaning the product direction into a review workflow dashboard
+- creating a polished dashboard UI
+- separating data access into service files
+- adding protected route behavior
+- building search, filter, and sorting flows
+- using local storage for a reliable demo experience
+- keeping the project easy to explain in an interview
+
+---
+
+<h2>Future Scope</h2>
+
+The current version is kept intentionally stable for deployment and review. The next improvements I would make are:
+
+- rename remaining legacy internal filenames to fully match the FairOps domain
+- add TypeScript models for review cases, teams, and workflow status
+- add tests for filtering, sorting, and risk calculation logic
+- replace local mock services with a REST or GraphQL backend
+- add case audit history for status changes and reviewer notes
+- add reviewer/admin workflows after backend authorization is introduced
+
+---
+
+<h2>Author</h2>
+
+Jash Shah  
+Email: jashsujeshshah10@gmail.com  
+Live Demo: https://fairops.netlify.app  
+GitHub: https://github.com/jashcl/fairops-review-dashboard
